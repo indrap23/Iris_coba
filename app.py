@@ -4,7 +4,7 @@ import numpy as np
 from prediction import predict
 from model import modelling
 
-@st.cache(suppress_st_warning=True)
+st.cache_data(suppress_st_warning=True)
 def get_fvalue(val):
     feature_dict = {"No":1,"Yes":2}    
     for key,value in feature_dict.items():
