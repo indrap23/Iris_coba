@@ -4,22 +4,25 @@ import numpy as np
 from prediction import predict
 from model import modelling
 
-st.cache_data(suppress_st_warning=True)
+@st.cache_data  # Remove suppress_st_warning
 def get_fvalue(val):
     feature_dict = {"No":1,"Yes":2}    
     for key,value in feature_dict.items():
         if val == key:
             return value
+
 def get_value(val,my_dict):
     for key,value in my_dict.items():
         if val == key:
             return value
-app_mode = st.sidebar.selectbox('Select Page',['Home','Prediction','Relearning']) #three pages
+
+app_mode = st.sidebar.selectbox('Select Page',['Home','Prediction','Relearning']) 
 
 if app_mode=='Home':
     st.title('Classifying Iris Flowers')
     st.markdown('we try to predict the type of Iris Flower')
     st.image('iris.png')
+
 elif app_mode == 'Prediction':
     st.title('Classifying Iris Flowers')
     st.markdown('model for classify iris flowers into \setosa, versicolor, virginica')
@@ -42,11 +45,11 @@ elif app_mode == 'Prediction':
             st.image('virginica.jpg')
         elif result == 'Versicolor':
             st.image('versicolor.jpg')
+
 elif app_mode == 'Relearning':
     st.title('Relearning Classifying Iris Flowers')
     uploaded_file = st.file_uploader("Choose a CSV file")
     if uploaded_file is not None:
-    # Can be used wherever a "file-like" object is accepted:
         dataframe = pd.read_csv(uploaded_file)
     if st.button('Relearning'):
         result = modelling(dataframe)
