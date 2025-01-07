@@ -52,4 +52,3 @@ elif app_mode == 'Relearning':
         result = modelling(dataframe)
         st.text('Done Relearning')
         st.text(result)
-
